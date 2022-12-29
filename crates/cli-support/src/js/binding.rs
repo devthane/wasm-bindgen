@@ -604,7 +604,7 @@ fn instruction(js: &mut JsBuilder, instr: &Instruction, log_error: &mut bool) ->
             let val = js.pop();
             match output {
                 wit_walrus::ValType::U32 => js.push(format!("{} >>> 0", val)),
-                wit_walrus::ValType::U64 => js.push(format!("BigInt.asUintN(64, {val})")),
+                wit_walrus::ValType::U64 => js.push(format!("BigInt.asUintN(64, BigInt({val}))")),
                 _ => js.push(val),
             }
         }
